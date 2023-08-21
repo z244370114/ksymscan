@@ -61,28 +61,35 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          margin: const EdgeInsets.all(12),
-          elevation: 1,
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 4,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 10,
-            children: data.map((e) => _buildItem(e)).toList(),
+    return Container(
+      color: Colors.grey[100],
+      child: Column(
+        children: [
+          Card(
+            margin: const EdgeInsets.all(12),
+            elevation: 1,
+            child: GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 4,
+              children: data.map((e) => _buildItem(e)).toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildItem(Map item) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(Icons.add),
-        Text(item["title"]),
+        Text(
+          item["title"],
+          style: TextStyle(
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }
