@@ -10,6 +10,10 @@ class QrCodeViewPage extends StatefulWidget {
 class _QrCodeViewPageState extends State<QrCodeViewPage> {
   List<Map> data = [
     {
+      "title": "Code 128",
+      "url": "",
+    },
+    {
       "title": "Code 128A",
       "url": "",
     },
@@ -35,10 +39,6 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
     },
     {
       "title": "Codabar",
-      "url": "",
-    },
-    {
-      "title": "Code 128",
       "url": "",
     },
     {

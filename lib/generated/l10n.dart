@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `文本，名片，邮箱，手机号，网址，Wi-Fi，短信`
+  String get qrTitle {
+    return Intl.message(
+      '文本，名片，邮箱，手机号，网址，Wi-Fi，短信',
+      name: 'qrTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `“木鱼 - 念经神器”主要用于平静内心情绪，防止冲动,我们在向您提供服务时，可能需要收集使用您账号相关信息及调用账号服务,存储,读取手机状态和身份,和一点网络信息及网络服务权限，我们承诺您的个人信息仅用于我们声明的目的。点击“同意”即表示您同意上述内容。`
   String get userAgreementTip {
     return Intl.message(
