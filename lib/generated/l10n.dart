@@ -290,6 +290,56 @@ class S {
     );
   }
 
+  /// `网络名称`
+  String get labelWifiName {
+    return Intl.message(
+      '网络名称',
+      name: 'labelWifiName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `密码`
+  String get labelWifiPassword {
+    return Intl.message(
+      '密码',
+      name: 'labelWifiPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `收件人`
+  String get labelSjr {
+    return Intl.message(
+      '收件人',
+      name: 'labelSjr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `主题`
+  String get labelZhuTi {
+    return Intl.message(
+      '主题',
+      name: 'labelZhuTi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `应用地址`
+  String get labelApp {
+    return Intl.message(
+      '应用地址',
+      name: 'labelApp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `请输入文本`
   String get hintText {
     return Intl.message(
@@ -370,6 +420,26 @@ class S {
     );
   }
 
+  /// `网络`
+  String get hintTextWifi {
+    return Intl.message(
+      '网络',
+      name: 'hintTextWifi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `密码`
+  String get hintTextPassword {
+    return Intl.message(
+      '密码',
+      name: 'hintTextPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `开始制作`
   String get btnCreate {
     return Intl.message(
@@ -390,10 +460,10 @@ class S {
     );
   }
 
-  /// `纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信`
+  /// `纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用`
   String get qrTitle {
     return Intl.message(
-      '纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信',
+      '纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用',
       name: 'qrTitle',
       desc: '',
       args: [],

@@ -21,18 +21,9 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
     Icons.web_outlined,
     Icons.wifi_password_rounded,
     Icons.sms_rounded,
-
-    // 'qrcode_txt',
-    // 'qrcode_mingpian',
-    // 'qrcode_email',
-    // 'qrcode_phone',
-    // 'qrcode_wangzhi',
-    // 'qrcode_wpa_wpa2',
-    // 'qrcode_sms'
+    Icons.android_outlined,
   ];
-
   var title = [];
-
   var selectTitleIndex = 0;
 
   final TextEditingController _controllerTxtFilled = TextEditingController();
@@ -41,6 +32,8 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   final TextEditingController _controllerFirmFilled = TextEditingController();
   final TextEditingController _controllerPostsFilled = TextEditingController();
   final TextEditingController _controllerEmailFilled = TextEditingController();
+  final TextEditingController _controllerEmailFilledOne =
+      TextEditingController();
   final TextEditingController _controllerAddressFilled =
       TextEditingController();
   final TextEditingController _controllerOutlined = TextEditingController();
@@ -57,34 +50,36 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   @override
   Widget build(BuildContext context) {
     initTitle();
-    return Container(
-      color: Colors.grey[100],
-      child: Column(
-        children: [
-          Card(
-            margin: const EdgeInsets.all(12),
-            elevation: 1,
-            child: GridView.builder(
-                itemCount: imageUrl.length,
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, //
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return _buildItem(index);
-                }),
-          ),
-          Title(color: Colors.black, child: Text(title[selectTitleIndex])),
-          Card(
-            margin: const EdgeInsets.all(12),
-            elevation: 1,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: _contentWidget(),
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.grey[100],
+        child: Column(
+          children: [
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: GridView.builder(
+                  itemCount: imageUrl.length,
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4, //
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return _buildItem(index);
+                  }),
             ),
-          ),
-        ],
+            Title(color: Colors.black, child: Text(title[selectTitleIndex])),
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                child: _contentWidget(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -118,6 +113,18 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         return _txtWidget();
       case 1:
         return _mingpianWidget();
+      case 2:
+        return _emailWidget();
+      case 3:
+        return _phoneWidget();
+      case 4:
+        return _wangzhiWidget();
+      case 5:
+        return _wifiWidget();
+      case 6:
+        return _smsWidget();
+      case 7:
+        return _appWidget();
     }
   }
 
@@ -134,6 +141,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ],
       );
 
+  ///名片
   _mingpianWidget() => Column(
         children: [
           _textField(
@@ -147,6 +155,8 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             S.of(context).labelPhone,
             S.of(context).hintTextPhone,
             Icons.phone_android_outlined,
+            helpText: "+86155*****333",
+            textInputType: TextInputType.phone,
           ),
           _textField(
             _controllerFirmFilled,
@@ -165,6 +175,8 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             S.of(context).labelEmail,
             S.of(context).hintTextEmail,
             Icons.email_outlined,
+            helpText: "copy@outlook.com",
+            textInputType: TextInputType.emailAddress,
           ),
           _textField(
             _controllerAddressFilled,
@@ -176,10 +188,131 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ],
       );
 
+  ///邮箱
+  _emailWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelEmail,
+            S.of(context).hintTextEmail,
+            Icons.email_outlined,
+            helpText: "***@outlook.com / ***@qq.com",
+            textInputType: TextInputType.emailAddress,
+          ),
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelUrl,
+            S.of(context).hintTextUrl,
+            Icons.line_axis_outlined,
+            helpText: "***@outlook.com / ***@qq.com",
+            textInputType: TextInputType.emailAddress,
+          ),
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelZhuTi,
+            S.of(context).labelZhuTi,
+            Icons.title_outlined,
+          ),
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelText,
+            S.of(context).hintText,
+            Icons.text_fields_outlined,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _phoneWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelPhone,
+            S.of(context).hintTextPhone,
+            Icons.phone_android_outlined,
+            helpText: "+86155*****333",
+            textInputType: TextInputType.phone,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _wangzhiWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelUrl,
+            S.of(context).hintTextUrl,
+            Icons.line_axis_outlined,
+            helpText: "http://,https://",
+            textInputType: TextInputType.url,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _wifiWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelWifiName,
+            S.of(context).hintTextWifi,
+            Icons.network_cell_outlined,
+          ),
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelWifiPassword,
+            S.of(context).hintTextPassword,
+            Icons.password_outlined,
+            textInputType: TextInputType.visiblePassword,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _smsWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelSjr,
+            S.of(context).hintTextPhone,
+            Icons.person,
+            helpText: "+86155*****333",
+            textInputType: TextInputType.phone,
+          ),
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelText,
+            S.of(context).hintText,
+            Icons.text_fields_sharp,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _appWidget() => Column(
+        children: [
+          _textField(
+            _controllerEmailFilledOne,
+            S.of(context).labelApp,
+            S.of(context).hintTextUrl,
+            Icons.person,
+            helpText:
+                "https://play.google.com/store/apps/details?id=com.xhx.woodenfishs",
+            textInputType: TextInputType.url,
+          ),
+          _createButton(),
+        ],
+      );
+
   _createButton() => Padding(
         padding: const EdgeInsets.only(top: 20),
         child: ElevatedButton(
           onPressed: () {
+            // 'tel:+1234567890', // 替换为您的电话号码
+            // sms:+1234567890
+            // 'WIFI:T:WPA;S:MyWiFi;P:password;;', // 替换为您的Wi-Fi配置
+            // 'mailto:example@example.com?cc=example2@example.com&subject=Hello&body=Hello%20World',
             var maps = {
               "title": title[selectTitleIndex],
               "index": selectTitleIndex,
@@ -199,13 +332,15 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
       );
 
   _textField(TextEditingController textEditingController, String label,
-      String hintText, IconData iconData) {
+      String hintText, IconData iconData,
+      {String? helpText,
+      TextInputType? textInputType = TextInputType.multiline}) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextField(
         controller: textEditingController,
         maxLines: null,
-        keyboardType: TextInputType.multiline,
+        keyboardType: textInputType,
         decoration: InputDecoration(
           label: Text(label),
           prefixIcon: Icon(iconData),
@@ -214,6 +349,8 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
           border: OutlineInputBorder(),
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+          helperText: helpText,
+          helperStyle: TextStyle(color: Colors.grey, fontSize: 15),
           suffixIcon: ClearButton(controller: textEditingController),
         ),
         onEditingComplete: () {},

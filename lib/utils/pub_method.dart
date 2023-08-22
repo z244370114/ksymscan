@@ -6,4 +6,8 @@ class PubMethodUtils {
     // });
   }
 
+  static String jiexiContent(int type, String contents) {
+    var content = "";
+    return content;
+  }
 }
