@@ -57,17 +57,42 @@ class _CreateViewPageState extends State<CreateViewPage> {
         title: Text(S.of(context).lookPhoto),
       ),
       body: Container(
-        color: Theme.of(context).colorScheme.inversePrimary,
         width: double.infinity,
         child: Column(
           children: [
-            SizedBox(
-              height: 240,
-              width: 240,
-              child: QrImageView(
-                data: content,
-                version: QrVersions.auto,
-                size: 240.0,
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    height: 200,
+                    width: double.infinity,
+                    child: QrImageView(
+                      data: content,
+                      version: QrVersions.auto,
+                      size: 200,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    child: ListTile(
+                      title: Text("电话"),
+                      subtitle: Text("15972252248"),
+                      trailing: Icon(Icons.copy_all_outlined),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
