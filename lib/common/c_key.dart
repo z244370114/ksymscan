@@ -20,7 +20,6 @@ class CKey {
   static const String sourceUrl = "sourceUrl";
   static const String applicationUrl = "applicationUrl";
 
-
   ///是否第一次安装启动
   static const String runOne = "runOne";
 
@@ -32,5 +31,4 @@ class CKey {
 
   ///引导图状态
   static const String userGuideState = "userGuideState";
-
 }

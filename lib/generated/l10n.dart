@@ -210,11 +210,201 @@ class S {
     );
   }
 
-  /// `文本，名片，邮箱，手机号，网址，Wi-Fi，短信`
+  /// `纯文本`
+  String get labelText {
+    return Intl.message(
+      '纯文本',
+      name: 'labelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `网址`
+  String get labelUrl {
+    return Intl.message(
+      '网址',
+      name: 'labelUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `姓名`
+  String get labelName {
+    return Intl.message(
+      '姓名',
+      name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `电话`
+  String get labelPhone {
+    return Intl.message(
+      '电话',
+      name: 'labelPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `公司名称`
+  String get labelFirm {
+    return Intl.message(
+      '公司名称',
+      name: 'labelFirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `职位`
+  String get labelPosts {
+    return Intl.message(
+      '职位',
+      name: 'labelPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `邮箱`
+  String get labelEmail {
+    return Intl.message(
+      '邮箱',
+      name: 'labelEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `地址`
+  String get labelAddress {
+    return Intl.message(
+      '地址',
+      name: 'labelAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入文本`
+  String get hintText {
+    return Intl.message(
+      '请输入文本',
+      name: 'hintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入网址`
+  String get hintTextUrl {
+    return Intl.message(
+      '请输入网址',
+      name: 'hintTextUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入姓名`
+  String get hintTextName {
+    return Intl.message(
+      '请输入姓名',
+      name: 'hintTextName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入电话`
+  String get hintTextPhone {
+    return Intl.message(
+      '请输入电话',
+      name: 'hintTextPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入公司名称`
+  String get hintTextFirm {
+    return Intl.message(
+      '请输入公司名称',
+      name: 'hintTextFirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入职位`
+  String get hintTextPosts {
+    return Intl.message(
+      '请输入职位',
+      name: 'hintTextPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入邮箱`
+  String get hintTextEmail {
+    return Intl.message(
+      '请输入邮箱',
+      name: 'hintTextEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请输入地址`
+  String get hintTextAddress {
+    return Intl.message(
+      '请输入地址',
+      name: 'hintTextAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `开始制作`
+  String get btnCreate {
+    return Intl.message(
+      '开始制作',
+      name: 'btnCreate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `预览图片`
+  String get lookPhoto {
+    return Intl.message(
+      '预览图片',
+      name: 'lookPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信`
   String get qrTitle {
     return Intl.message(
-      '文本，名片，邮箱，手机号，网址，Wi-Fi，短信',
+      '纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信',
       name: 'qrTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Code 39 Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E`
+  String get barTitle {
+    return Intl.message(
+      'Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Code 39 Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E',
+      name: 'barTitle',
       desc: '',
       args: [],
     );

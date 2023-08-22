@@ -16,8 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          primaryColor: Theme.of(context).colorScheme.inversePrimary,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+          ),
           brightness: Brightness.light),
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
