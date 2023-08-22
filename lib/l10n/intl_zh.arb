@@ -38,8 +38,21 @@
   "hintTextAddress": "请输入地址",
   "hintTextWifi": "网络",
   "hintTextPassword": "密码",
-  "btnCreate": "开始制作",
-  "lookPhoto": "预览图片",
+  "hintTextCode128A": "字符集 包括大写字母、数字、常用标点符号和一些控制符。"
+  "hintTextCode128B":"字符集 包括大小写字母、数字、常用标点符号。"
+  "hintTextCode128C":"字符集 为纯数字序列。"
+  "hintTextCode128Auto":"是将上述三种字符集最佳优化组合。"
+  "hintTextEAN128":"条码生成 是由UPC/EAN指定代表意义规则的128码，编码方式同code128条码。"
+  "hintTextCode39":"条码生成字符集包括数字 、大写字母以及- . $ / + % * 空格等字符,其中"*"只用于标记开始和结束。"
+  "hintTextCode93":"条码生成是 full ASCII 模式，可使用ASCII全部128个字符。"
+  "hintTextCode11":"条码 只允许11种字元，分别是0-9和"-",为降低检查错误率，可使用两位的检验码。"
+  "hintTextMSI":"条形码 必须是纯的数字0-9，带有一位检验码。"
+  "hintTextEAN13":"商品条码是纯数字，而且位数是12位，在编码过后外加一位校验码，组成13位数字。"
+  "hintTextEAN8":"商品条码是纯数字，而且位数是7位，在编码过后外加一位校验码，组成8位数字。"
+  "hintTextUPCA":"条码商品条码是纯数字，而且位数是11位，在编码过后外加一位校验码，组成12位数字,主要在美国和加拿大使用。"
+  "hintTextUPCE":" 条码商品条码是纯数字，是由UPC-A缩减而成，位数是7位，而且首位必须为0，在编码过后外加一位校验码，组成8位数字。"
+  "btnCreate":"开始制作",
+  "lookPhoto":"预览图片",
   "qrTitle": "纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用",
   "barTitle": "Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Code 39 Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E",
   "userAgreementTip": "“木鱼 - 念经神器”主要用于平静内心情绪，防止冲动,我们在向您提供服务时，可能需要收集使用您账号相关信息及调用账号服务,存储,读取手机状态和身份,和一点网络信息及网络服务权限，我们承诺您的个人信息仅用于我们声明的目的。点击“同意”即表示您同意上述内容。",
