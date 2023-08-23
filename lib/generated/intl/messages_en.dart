@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "barcode": MessageLookupByLibrary.simpleMessage("条形码"),
         "btnCreate": MessageLookupByLibrary.simpleMessage("开始制作"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "close": MessageLookupByLibrary.simpleMessage("关闭"),
         "givePraise": MessageLookupByLibrary.simpleMessage("给好评"),
         "hello": MessageLookupByLibrary.simpleMessage("你好！"),
         "hintText": MessageLookupByLibrary.simpleMessage("请输入文本"),
@@ -64,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintTextMSI":
             MessageLookupByLibrary.simpleMessage("条形码 必须是纯的数字0-9，带有一位检验码。"),
         "hintTextName": MessageLookupByLibrary.simpleMessage("请输入姓名"),
+        "hintTextNull": MessageLookupByLibrary.simpleMessage("输入不能为空，请重新输入"),
         "hintTextPassword": MessageLookupByLibrary.simpleMessage("密码"),
         "hintTextPhone": MessageLookupByLibrary.simpleMessage("请输入电话"),
         "hintTextPosts": MessageLookupByLibrary.simpleMessage("请输入职位"),
@@ -97,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrTitle": MessageLookupByLibrary.simpleMessage(
             "Plain text,business card,email,mobile number,website,Wi-Fi,SMS,application"),
         "qrcode": MessageLookupByLibrary.simpleMessage("二维码"),
+        "saveFail": MessageLookupByLibrary.simpleMessage("保存失败"),
+        "saveSuccess": MessageLookupByLibrary.simpleMessage("保存成功"),
         "setting": MessageLookupByLibrary.simpleMessage("设置"),
         "userAgreement": MessageLookupByLibrary.simpleMessage("用户协议"),
         "userAgreementTip": MessageLookupByLibrary.simpleMessage(

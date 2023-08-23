@@ -13,6 +13,7 @@ const double largeWidthBreakpoint = 1500;
 
 const double transitionLength = 500;
 
+final GlobalKey boundaryKey = GlobalKey();
 // Whether the user has chosen a theme color via a direct [ColorSeed] selection,
 // or an image [ColorImageProvider].
 enum ColorSelectionMethod {

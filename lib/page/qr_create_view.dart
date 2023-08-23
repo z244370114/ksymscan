@@ -1,15 +1,20 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:ksymscan/common/constants.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
+import 'package:share_plus/share_plus.dart';
+import '../common/application.dart';
 import '../generated/l10n.dart';
+import '../model/qr_bar_data.dart';
+import '../utils/pub_method.dart';
 
 class QrCreateViewPage extends StatefulWidget {
-  final Map map;
+  final QrBarData qrBarData;
 
   const QrCreateViewPage({
     Key? key,
-    required this.map,
+    required this.qrBarData,
   }) : super(key: key);
 
   @override
@@ -17,17 +22,17 @@ class QrCreateViewPage extends StatefulWidget {
 }
 
 class _QrCreateViewPageState extends State<QrCreateViewPage> {
-  late String content;
-  late String title;
-  late QrTypeEnum qrTypeEnum;
+  late QrBarData qrBarData;
+
+  final GlobalKey widgetKey = GlobalKey();
+
+  var directoryPath = "";
 
   @override
   void initState() {
     super.initState();
-    title = widget.map['title'];
-    content = widget.map['content'];
-    qrTypeEnum = widget.map['enumType'];
-    switch (widget.map['index']) {
+    qrBarData = widget.qrBarData;
+    switch (qrBarData.index) {
       case 0:
         break;
       case 1:
@@ -53,8 +58,7 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
+        title: Text(qrBarData.title!),
       ),
       body: Container(
         width: double.infinity,
@@ -71,24 +75,55 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                       alignment: Alignment.center,
                       height: 200,
                       width: double.infinity,
-                      child: QrImageView(
-                        data: content,
-                        version: QrVersions.auto,
-                        size: 200,
+                      child: RepaintBoundary(
+                        key: boundaryKey,
+                        child: QrImageView(
+                          data: qrBarData.content!,
+                          version: QrVersions.auto,
+                          backgroundColor: Colors.white,
+                          size: 200,
+                        ),
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton.filledTonal(
-                          onPressed: () {},
-                          icon: Icon(
+                          onPressed: () async {
+                            Map result =
+                                await PubMethodUtils.saveWidgetAsImage();
+                            directoryPath = result['file'];
+                            final snackBar = SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              width: 400.0,
+                              content: Text(result['isSuccess']
+                                  ? S.of(context).saveSuccess
+                                  : S.of(context).saveFail),
+                              action: SnackBarAction(
+                                label: S.of(context).close,
+                                onPressed: () {},
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                          icon: const Icon(
                             Icons.download_rounded,
                           ),
                         ),
                         IconButton.filledTonal(
-                          onPressed: () {},
-                          icon: Icon(
+                          onPressed: () async {
+                            Uint8List imageunit8 =
+                                await PubMethodUtils.getImageUint8List();
+                            final result = await Share.shareXFiles(
+                                [XFile.fromData(imageunit8)],
+                                text: 'Great picture');
+                            if (result.status == ShareResultStatus.success) {
+                              print('Thank you for sharing the picture!');
+                            }
+                          },
+                          icon: const Icon(
                             Icons.share_outlined,
                           ),
                         ),
@@ -107,10 +142,26 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                     alignment: Alignment.center,
                     width: double.infinity,
                     child: ListTile(
-                      title: Text("电话"),
-                      subtitle: Text("15972252248"),
+                      title: Text(
+                        qrBarData.title!,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      leading: Icon(qrBarData.iconUrl!),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: qrBarData.contents!
+                            .map(
+                              (e) => Text(
+                                e,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                            )
+                            .toList(),
+                      ),
                       trailing: IconButton.filledTonal(
-                        onPressed: () {},
+                        onPressed: () {
+                          PubMethodUtils.copyToClipboard(qrBarData.content!);
+                        },
                         icon: Icon(
                           Icons.copy_outlined,
                         ),

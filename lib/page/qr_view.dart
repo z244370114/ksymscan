@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../common/application.dart';
 import '../common/constants.dart';
 import '../generated/l10n.dart';
+import '../model/qr_bar_data.dart';
 import '../widget/clear_button.dart';
 import '../widget/vcard/v_card.dart';
 import 'qr_create_view.dart';
@@ -17,18 +19,19 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   List<IconData> imageUrl = [
     Icons.text_fields_sharp,
     Icons.person_2_sharp,
-    Icons.email_rounded,
-    Icons.phone_android_rounded,
-    Icons.web_outlined,
-    Icons.wifi_password_rounded,
-    Icons.sms_rounded,
-    Icons.android_outlined,
+    Icons.email_sharp,
+    Icons.phone_android_sharp,
+    Icons.link_sharp,
+    Icons.wifi_password_sharp,
+    Icons.sms_sharp,
+    Icons.android_sharp,
   ];
   var title = [];
   var selectTitleIndex = 0;
 
   final List<TextEditingController> editingController = [];
   StringBuffer content = StringBuffer("");
+  var contents = [];
 
   @override
   void initState() {
@@ -45,9 +48,11 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   @override
   Widget build(BuildContext context) {
     initTitle();
-    return SingleChildScrollView(
-      child: Container(
-        color: Colors.grey[100],
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.grey[100],
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Card(
@@ -137,6 +142,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             S.of(context).labelText,
             S.of(context).hintText,
             Icons.text_fields_sharp,
+            maxLines: 5,
           ),
           _createButton(),
         ],
@@ -311,6 +317,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             S.of(context).labelText,
             S.of(context).hintText,
             Icons.text_fields_sharp,
+            maxLines: 5,
           ),
           _createButton(),
         ],
@@ -336,9 +343,11 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         child: ElevatedButton(
           onPressed: () {
             content.clear();
+            contents.clear();
             switch (selectTitleIndex) {
               case 0:
                 content.write(editingController[0].text);
+                contents.add(editingController[0].text);
                 break;
               case 1:
                 final vCard = VCard();
@@ -348,6 +357,12 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 vCard.jobTitle = editingController[4].text;
                 vCard.email = editingController[5].text;
                 vCard.workAddress.street = editingController[6].text;
+                contents.add(editingController[1].text);
+                contents.add(editingController[2].text);
+                contents.add(editingController[3].text);
+                contents.add(editingController[4].text);
+                contents.add(editingController[5].text);
+                contents.add(editingController[6].text);
                 content.write(vCard.getFormattedString());
                 break;
               case 2:
@@ -360,24 +375,32 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 content.write(editingController[9].text);
                 content.write("&body=");
                 content.write(editingController[10].text);
+                contents.add(editingController[7].text);
+                contents.add(editingController[8].text);
+                contents.add(editingController[9].text);
+                contents.add(editingController[10].text);
                 break;
               case 3:
                 // 'tel:+1234567890', // 替换为您的电话号码
                 content.write("tel:");
                 content.write(editingController[11].text);
+                contents.add(editingController[11].text);
                 break;
               case 4:
                 content.write(editingController[12].text);
+                contents.add(editingController[12].text);
                 break;
               case 5:
                 // WIFI:T:WPA;S:MyWiFi;P:password;;
                 content.write("WIFI:T:");
-                content.write(wifiEnumView.name);
-                content.write("S:");
-                content.write(editingController[12].text);
-                content.write("P:");
+                content.write(wifiEnumView.name.toUpperCase());
+                content.write(";S:");
                 content.write(editingController[13].text);
+                content.write(";P:");
+                content.write(editingController[14].text);
                 content.write(";;");
+                contents.add(editingController[13].text);
+                contents.add(editingController[14].text);
                 break;
               case 6:
                 // sms:+1234567890
@@ -385,23 +408,27 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 content.write(editingController[15].text);
                 content.write("?body=");
                 content.write(editingController[16].text);
+                contents.add(editingController[15].text);
+                contents.add(editingController[16].text);
                 break;
               case 7:
                 content.write(editingController[17].text);
+                contents.add(editingController[17].text);
                 break;
             }
-
-            var maps = {
-              "title": title[selectTitleIndex],
-              "index": selectTitleIndex,
-              "enumType": QrTypeEnum.values[selectTitleIndex],
-              "content": content.toString(),
-            };
+            var qrBarData = QrBarData();
+            qrBarData.iconUrl = imageUrl[selectTitleIndex];
+            qrBarData.title = title[selectTitleIndex];
+            qrBarData.index = selectTitleIndex;
+            qrBarData.enumType = QrTypeEnum.values[selectTitleIndex];
+            qrBarData.content = content.toString();
+            qrBarData.contents = contents.cast<String>();
+            Application.addQrBarData(qrBarData);
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => QrCreateViewPage(
-                  map: maps,
+                  qrBarData: qrBarData,
                 ),
               ),
             );
@@ -410,15 +437,21 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ),
       );
 
-  _textField(TextEditingController textEditingController, String label,
-      String hintText, IconData iconData,
-      {String? helpText,
-      TextInputType? textInputType = TextInputType.multiline}) {
+  _textField(
+    TextEditingController textEditingController,
+    String label,
+    String hintText,
+    IconData iconData, {
+    String? helpText,
+    TextInputType? textInputType = TextInputType.text,
+    int? maxLines = 1,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: TextField(
+      child: TextFormField(
+        textInputAction: TextInputAction.done,
         controller: textEditingController,
-        maxLines: null,
+        maxLines: maxLines,
         keyboardType: textInputType,
         decoration: InputDecoration(
           label: Text(label),
@@ -434,7 +467,6 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ),
         onEditingComplete: () {},
         onChanged: (v) {},
-        onSubmitted: (v) {},
       ),
     );
   }

@@ -31,4 +31,6 @@ class CKey {
 
   ///引导图状态
   static const String userGuideState = "userGuideState";
+
+  static const String listQrBarData = "listQrBarData";
 }

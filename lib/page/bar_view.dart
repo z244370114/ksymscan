@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../common/application.dart';
 import '../generated/l10n.dart';
+import '../model/qr_bar_data.dart';
 import '../utils/img_util.dart';
 import '../widget/clear_button.dart';
 import 'bar_create_view.dart';
@@ -44,10 +46,10 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
 
   initTitle() {
     title = S.of(context).barTitle.split(',');
+    hintTexts.add(S.of(context).hintTextCode128Auto);
     hintTexts.add(S.of(context).hintTextCode128A);
     hintTexts.add(S.of(context).hintTextCode128B);
     hintTexts.add(S.of(context).hintTextCode128C);
-    hintTexts.add(S.of(context).hintTextCode128Auto);
     hintTexts.add(S.of(context).hintTextCode39);
     hintTexts.add(S.of(context).hintTextCode93);
     hintTexts.add(S.of(context).hintTextExtended);
@@ -62,40 +64,44 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
   Widget build(BuildContext context) {
     initTitle();
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       color: Colors.grey[100],
-      child: Column(
-        children: [
-          Card(
-            margin: const EdgeInsets.all(12),
-            elevation: 1,
-            child: GridView.builder(
-              itemCount: imageUrl.length,
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, //
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: GridView.builder(
+                itemCount: imageUrl.length,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4, //
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildItem(index);
+                },
               ),
-              itemBuilder: (BuildContext context, int index) {
-                return _buildItem(index);
-              },
             ),
-          ),
-          Title(
-            color: Colors.black,
-            child: Text(
-              title[selectTitleIndex],
-              style: Theme.of(context).textTheme.titleLarge,
+            Title(
+              color: Colors.black,
+              child: Text(
+                title[selectTitleIndex],
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
-          ),
-          Card(
-            margin: const EdgeInsets.all(12),
-            elevation: 1,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: _contentWidget(),
+            Card(
+              margin: const EdgeInsets.all(12),
+              elevation: 1,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                width: double.infinity,
+                child: _contentWidget(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -140,20 +146,35 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
         padding: const EdgeInsets.only(top: 20),
         child: ElevatedButton(
           onPressed: () {
-            // 'tel:+1234567890', // 替换为您的电话号码
-            // sms:+1234567890
-            // 'WIFI:T:WPA;S:MyWiFi;P:password;;', // 替换为您的Wi-Fi配置
-            // 'mailto:example@example.com?cc=example2@example.com&subject=Hello&body=Hello%20World',
-            var maps = {
-              "title": title[selectTitleIndex],
-              "index": selectTitleIndex,
-              "content": editingController[selectTitleIndex].text,
-            };
+            if (editingController[selectTitleIndex].text.isEmpty) {
+              final snackBar = SnackBar(
+                behavior: SnackBarBehavior.floating,
+                width: 400.0,
+                content: Text(S.of(context).hintTextNull),
+                action: SnackBarAction(
+                  label: S.of(context).close,
+                  onPressed: () {},
+                ),
+              );
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              return;
+            }
+
+            var qrBarData = QrBarData();
+            qrBarData.imgUrl = imageUrl[selectTitleIndex];
+            qrBarData.title = title[selectTitleIndex];
+            qrBarData.index = selectTitleIndex;
+            // qrBarData.enumType = QrTypeEnum.values[selectTitleIndex];
+            qrBarData.content = editingController[selectTitleIndex].text;
+            qrBarData.contents = [editingController[selectTitleIndex].text];
+            Application.addQrBarData(qrBarData);
+
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => BarCreateViewPage(
-                  map: maps,
+                  qrBarData: qrBarData,
                 ),
               ),
             );
@@ -162,17 +183,23 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
         ),
       );
 
-  _textField(TextEditingController textEditingController, String label,
-      String hintText, IconData iconData,
-      {String? helpText,
-      TextInputType? textInputType = TextInputType.multiline}) {
+  _textField(
+    TextEditingController textEditingController,
+    String label,
+    String hintText,
+    IconData iconData, {
+    String? helpText,
+    TextInputType? textInputType = TextInputType.multiline,
+    int? maxLines = 5,
+  }) {
     return Container(
       padding: const EdgeInsets.only(top: 10),
-      child: TextField(
+      child: TextFormField(
         controller: textEditingController,
+        textInputAction: TextInputAction.next,
         keyboardType: textInputType,
-        maxLines: 7,
-        minLines: 2,
+        maxLines: maxLines,
+        minLines: 1,
         decoration: InputDecoration(
           label: Text(label),
           prefixIcon: Icon(iconData),
@@ -187,7 +214,6 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
         ),
         onEditingComplete: () {},
         onChanged: (v) {},
-        onSubmitted: (v) {},
       ),
     );
   }

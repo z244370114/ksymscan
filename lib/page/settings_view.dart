@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class SettingsViewPage extends StatefulWidget {
@@ -11,6 +10,18 @@ class SettingsViewPage extends StatefulWidget {
 class _SettingsViewPageState extends State<SettingsViewPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      child: Card(
+        margin: const EdgeInsets.all(12),
+        elevation: 1,
+        child: Column(
+          children: [
+
+          ],
+        ),
+      ),
+    );
   }
 }

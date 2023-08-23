@@ -43,16 +43,16 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: useMaterial3,
         brightness: Brightness.light,
       ),
-      darkTheme: ThemeData(
-        colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
-            ? colorSelected.color
-            : imageColorScheme!.primary,
-        useMaterial3: useMaterial3,
-        brightness: Brightness.dark,
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-        ),
-      ),
+      // darkTheme: ThemeData(
+      //   colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
+      //       ? colorSelected.color
+      //       : imageColorScheme!.primary,
+      //   useMaterial3: useMaterial3,
+      //   brightness: Brightness.dark,
+      //   appBarTheme: AppBarTheme(
+      //     centerTitle: true,
+      //   ),
+      // ),
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,

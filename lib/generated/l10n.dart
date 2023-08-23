@@ -190,6 +190,36 @@ class S {
     );
   }
 
+  /// `关闭`
+  String get close {
+    return Intl.message(
+      '关闭',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `保存成功`
+  String get saveSuccess {
+    return Intl.message(
+      '保存成功',
+      name: 'saveSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `保存失败`
+  String get saveFail {
+    return Intl.message(
+      '保存失败',
+      name: 'saveFail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `版本`
   String get version {
     return Intl.message(
@@ -345,6 +375,16 @@ class S {
     return Intl.message(
       '应用地址',
       name: 'labelApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `输入不能为空，请重新输入`
+  String get hintTextNull {
+    return Intl.message(
+      '输入不能为空，请重新输入',
+      name: 'hintTextNull',
       desc: '',
       args: [],
     );

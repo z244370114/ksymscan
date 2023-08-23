@@ -44,7 +44,7 @@ class _HomeViewPageState extends State<HomeViewPage>
     initTitle();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title[currentPageIndex]),
       ),
       bottomNavigationBar: NavigationBar(

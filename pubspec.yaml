@@ -39,7 +39,11 @@ dependencies:
   intl: ^0.18.0
   get_storage: ^2.1.1
   qr_flutter: ^4.1.0
-  syncfusion_flutter_barcodes: ^22.2.9
+  barcode_widget: ^2.0.4
+  image_gallery_saver: ^2.0.3
+  path_provider: ^2.1.0
+  flutter_colorpicker: ^1.0.3
+  share_plus: ^7.1.0
 #  vcard_maintained: ^0.0.1+1
 
 dev_dependencies:
