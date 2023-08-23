@@ -117,7 +117,7 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                             Uint8List imageunit8 =
                                 await PubMethodUtils.getImageUint8List();
                             final result = await Share.shareXFiles(
-                                [XFile.fromData(imageunit8)],
+                                [XFile.fromData(imageunit8, mimeType: "png")],
                                 text: 'Great picture');
                             if (result.status == ShareResultStatus.success) {
                               print('Thank you for sharing the picture!');

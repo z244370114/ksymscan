@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ksymscan/utils/pub_method.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../common/constants.dart';
 import '../generated/l10n.dart';
@@ -142,8 +145,15 @@ class _BarCreateViewPageState extends State<BarCreateViewPage> {
                           ),
                         ),
                         IconButton.filledTonal(
-                          onPressed: () {
-
+                          onPressed: () async {
+                            Uint8List imageunit8 =
+                                await PubMethodUtils.getImageUint8List();
+                            final result = await Share.shareXFiles(
+                                [XFile.fromData(imageunit8, mimeType: "png")],
+                                text: 'Great picture');
+                            if (result.status == ShareResultStatus.success) {
+                              print('Thank you for sharing the picture!');
+                            }
                           },
                           icon: Icon(
                             Icons.share_outlined,

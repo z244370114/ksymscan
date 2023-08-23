@@ -69,4 +69,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10') {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
 }
