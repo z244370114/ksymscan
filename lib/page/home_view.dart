@@ -13,7 +13,8 @@ class HomeViewPage extends StatefulWidget {
   State<HomeViewPage> createState() => _HomeViewPageState();
 }
 
-class _HomeViewPageState extends State<HomeViewPage> {
+class _HomeViewPageState extends State<HomeViewPage>
+    with SingleTickerProviderStateMixin {
   int currentPageIndex = 0;
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;

@@ -280,6 +280,16 @@ class S {
     );
   }
 
+  /// `抄送邮箱`
+  String get labelEmailAdd {
+    return Intl.message(
+      '抄送邮箱',
+      name: 'labelEmailAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `地址`
   String get labelAddress {
     return Intl.message(
@@ -440,6 +450,156 @@ class S {
     );
   }
 
+  /// `字符集 包括大写字母、数字、常用标点符号和一些控制符。`
+  String get hintTextCode128A {
+    return Intl.message(
+      '字符集 包括大写字母、数字、常用标点符号和一些控制符。',
+      name: 'hintTextCode128A',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `字符集 包括大小写字母、数字、常用标点符号。`
+  String get hintTextCode128B {
+    return Intl.message(
+      '字符集 包括大小写字母、数字、常用标点符号。',
+      name: 'hintTextCode128B',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `字符集 为纯数字序列。`
+  String get hintTextCode128C {
+    return Intl.message(
+      '字符集 为纯数字序列。',
+      name: 'hintTextCode128C',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `是将上述三种字符集最佳优化组合。`
+  String get hintTextCode128Auto {
+    return Intl.message(
+      '是将上述三种字符集最佳优化组合。',
+      name: 'hintTextCode128Auto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条码生成 是由UPC/EAN指定代表意义规则的128码，编码方式同code128条码。`
+  String get hintTextEAN128 {
+    return Intl.message(
+      '条码生成 是由UPC/EAN指定代表意义规则的128码，编码方式同code128条码。',
+      name: 'hintTextEAN128',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条码生成字符集包括数字 、大写字母以及- . $ / + % * 空格等字符,其中*只用于标记开始和结束。`
+  String get hintTextCode39 {
+    return Intl.message(
+      '条码生成字符集包括数字 、大写字母以及- . \$ / + % * 空格等字符,其中*只用于标记开始和结束。',
+      name: 'hintTextCode39',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条码生成是 full ASCII 模式，可使用ASCII全部128个字符。`
+  String get hintTextCode93 {
+    return Intl.message(
+      '条码生成是 full ASCII 模式，可使用ASCII全部128个字符。',
+      name: 'hintTextCode93',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条码 只允许11种字元，分别是0-9和-,为降低检查错误率，可使用两位的检验码。`
+  String get hintTextCode11 {
+    return Intl.message(
+      '条码 只允许11种字元，分别是0-9和-,为降低检查错误率，可使用两位的检验码。',
+      name: 'hintTextCode11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条形码 必须是纯的数字0-9，带有一位检验码。`
+  String get hintTextMSI {
+    return Intl.message(
+      '条形码 必须是纯的数字0-9，带有一位检验码。',
+      name: 'hintTextMSI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `商品条码是纯数字，而且位数是12位，在编码过后外加一位校验码，组成13位数字。`
+  String get hintTextEAN13 {
+    return Intl.message(
+      '商品条码是纯数字，而且位数是12位，在编码过后外加一位校验码，组成13位数字。',
+      name: 'hintTextEAN13',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `商品条码是纯数字，而且位数是7位，在编码过后外加一位校验码，组成8位数字。`
+  String get hintTextEAN8 {
+    return Intl.message(
+      '商品条码是纯数字，而且位数是7位，在编码过后外加一位校验码，组成8位数字。',
+      name: 'hintTextEAN8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `条码商品条码是纯数字，而且位数是11位，在编码过后外加一位校验码，组成12位数字,主要在美国和加拿大使用。`
+  String get hintTextUPCA {
+    return Intl.message(
+      '条码商品条码是纯数字，而且位数是11位，在编码过后外加一位校验码，组成12位数字,主要在美国和加拿大使用。',
+      name: 'hintTextUPCA',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` 条码商品条码是纯数字，是由UPC-A缩减而成，位数是7位，而且首位必须为0，在编码过后外加一位校验码，组成8位数字。`
+  String get hintTextUPCE {
+    return Intl.message(
+      ' 条码商品条码是纯数字，是由UPC-A缩减而成，位数是7位，而且首位必须为0，在编码过后外加一位校验码，组成8位数字。',
+      name: 'hintTextUPCE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `字符集包括数字和- $ :/.+ 以及ABCD等字符，其中ABCD只用于开始或者结尾，作为标识符使用。`
+  String get hintTextCodabar {
+    return Intl.message(
+      '字符集包括数字和- \$ :/.+ 以及ABCD等字符，其中ABCD只用于开始或者结尾，作为标识符使用。',
+      name: 'hintTextCodabar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `包含大写字母（A-Z）、数字（0-9）以及特殊符号（如空格、破折号、点号、美元符号等）`
+  String get hintTextExtended {
+    return Intl.message(
+      '包含大写字母（A-Z）、数字（0-9）以及特殊符号（如空格、破折号、点号、美元符号等）',
+      name: 'hintTextExtended',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `开始制作`
   String get btnCreate {
     return Intl.message(
@@ -460,20 +620,20 @@ class S {
     );
   }
 
-  /// `纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用`
+  /// `Plain text,business card,email,mobile number,website,Wi-Fi,SMS,application`
   String get qrTitle {
     return Intl.message(
-      '纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用',
+      'Plain text,business card,email,mobile number,website,Wi-Fi,SMS,application',
       name: 'qrTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Code 39 Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E`
+  /// `Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E`
   String get barTitle {
     return Intl.message(
-      'Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Code 39 Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E',
+      'Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E',
       name: 'barTitle',
       desc: '',
       args: [],

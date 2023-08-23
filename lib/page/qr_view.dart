@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
+import '../common/constants.dart';
 import '../generated/l10n.dart';
 import '../widget/clear_button.dart';
-import 'create_view.dart';
+import '../widget/vcard/v_card.dart';
+import 'qr_create_view.dart';
 
 class QrCodeViewPage extends StatefulWidget {
   const QrCodeViewPage({super.key});
@@ -26,21 +27,15 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   var title = [];
   var selectTitleIndex = 0;
 
-  final TextEditingController _controllerTxtFilled = TextEditingController();
-  final TextEditingController _controllerNameFilled = TextEditingController();
-  final TextEditingController _controllerPhoneFilled = TextEditingController();
-  final TextEditingController _controllerFirmFilled = TextEditingController();
-  final TextEditingController _controllerPostsFilled = TextEditingController();
-  final TextEditingController _controllerEmailFilled = TextEditingController();
-  final TextEditingController _controllerEmailFilledOne =
-      TextEditingController();
-  final TextEditingController _controllerAddressFilled =
-      TextEditingController();
-  final TextEditingController _controllerOutlined = TextEditingController();
+  final List<TextEditingController> editingController = [];
+  StringBuffer content = StringBuffer("");
 
   @override
   void initState() {
     super.initState();
+    for (int i = 0; i < 18; i++) {
+      editingController.add(TextEditingController());
+    }
   }
 
   initTitle() {
@@ -68,7 +63,13 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                     return _buildItem(index);
                   }),
             ),
-            Title(color: Colors.black, child: Text(title[selectTitleIndex])),
+            Title(
+              color: Colors.black,
+              child: Text(
+                title[selectTitleIndex],
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
             Card(
               margin: const EdgeInsets.all(12),
               elevation: 1,
@@ -132,7 +133,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _txtWidget() => Column(
         children: [
           _textField(
-            _controllerTxtFilled,
+            editingController[0],
             S.of(context).labelText,
             S.of(context).hintText,
             Icons.text_fields_sharp,
@@ -145,13 +146,13 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _mingpianWidget() => Column(
         children: [
           _textField(
-            _controllerNameFilled,
+            editingController[1],
             S.of(context).labelName,
             S.of(context).hintTextName,
             Icons.account_box_outlined,
           ),
           _textField(
-            _controllerPhoneFilled,
+            editingController[2],
             S.of(context).labelPhone,
             S.of(context).hintTextPhone,
             Icons.phone_android_outlined,
@@ -159,27 +160,27 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             textInputType: TextInputType.phone,
           ),
           _textField(
-            _controllerFirmFilled,
+            editingController[3],
             S.of(context).labelFirm,
             S.of(context).hintTextFirm,
             Icons.location_on_outlined,
           ),
           _textField(
-            _controllerPostsFilled,
+            editingController[4],
             S.of(context).labelPosts,
             S.of(context).hintTextPosts,
             Icons.grade_outlined,
           ),
           _textField(
-            _controllerEmailFilled,
+            editingController[5],
             S.of(context).labelEmail,
             S.of(context).hintTextEmail,
             Icons.email_outlined,
-            helpText: "copy@outlook.com",
+            helpText: "copy@gmail.com",
             textInputType: TextInputType.emailAddress,
           ),
           _textField(
-            _controllerAddressFilled,
+            editingController[6],
             S.of(context).labelAddress,
             S.of(context).hintTextAddress,
             Icons.my_location,
@@ -192,29 +193,29 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _emailWidget() => Column(
         children: [
           _textField(
-            _controllerEmailFilledOne,
+            editingController[7],
             S.of(context).labelEmail,
             S.of(context).hintTextEmail,
             Icons.email_outlined,
-            helpText: "***@outlook.com / ***@qq.com",
+            helpText: "copy@gmail.com",
             textInputType: TextInputType.emailAddress,
           ),
           _textField(
-            _controllerEmailFilledOne,
-            S.of(context).labelUrl,
-            S.of(context).hintTextUrl,
-            Icons.line_axis_outlined,
-            helpText: "***@outlook.com / ***@qq.com",
+            editingController[8],
+            S.of(context).labelEmailAdd,
+            S.of(context).hintTextEmail,
+            Icons.email_outlined,
+            helpText: "copy@gmail.com",
             textInputType: TextInputType.emailAddress,
           ),
           _textField(
-            _controllerEmailFilledOne,
+            editingController[9],
             S.of(context).labelZhuTi,
             S.of(context).labelZhuTi,
             Icons.title_outlined,
           ),
           _textField(
-            _controllerEmailFilledOne,
+            editingController[10],
             S.of(context).labelText,
             S.of(context).hintText,
             Icons.text_fields_outlined,
@@ -226,7 +227,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _phoneWidget() => Column(
         children: [
           _textField(
-            _controllerEmailFilledOne,
+            editingController[11],
             S.of(context).labelPhone,
             S.of(context).hintTextPhone,
             Icons.phone_android_outlined,
@@ -240,10 +241,10 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _wangzhiWidget() => Column(
         children: [
           _textField(
-            _controllerEmailFilledOne,
+            editingController[12],
             S.of(context).labelUrl,
             S.of(context).hintTextUrl,
-            Icons.line_axis_outlined,
+            Icons.link_outlined,
             helpText: "http://,https://",
             textInputType: TextInputType.url,
           ),
@@ -251,16 +252,41 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ],
       );
 
+  WifiEnum wifiEnumView = WifiEnum.wap2;
+
   _wifiWidget() => Column(
         children: [
+          SegmentedButton<WifiEnum>(
+            segments: const <ButtonSegment<WifiEnum>>[
+              ButtonSegment<WifiEnum>(
+                value: WifiEnum.wap2,
+                label: Text('WPA2'),
+              ),
+              ButtonSegment<WifiEnum>(
+                value: WifiEnum.wap3,
+                label: Text('WPA3'),
+              ),
+              ButtonSegment<WifiEnum>(
+                value: WifiEnum.wep,
+                label: Text('WEP'),
+              ),
+            ],
+            selected: {wifiEnumView},
+            onSelectionChanged: (newSelection) {
+              setState(() {
+                wifiEnumView = newSelection.first;
+                print(wifiEnumView);
+              });
+            },
+          ),
           _textField(
-            _controllerEmailFilledOne,
+            editingController[13],
             S.of(context).labelWifiName,
             S.of(context).hintTextWifi,
             Icons.network_cell_outlined,
           ),
           _textField(
-            _controllerEmailFilledOne,
+            editingController[14],
             S.of(context).labelWifiPassword,
             S.of(context).hintTextPassword,
             Icons.password_outlined,
@@ -273,7 +299,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _smsWidget() => Column(
         children: [
           _textField(
-            _controllerEmailFilledOne,
+            editingController[15],
             S.of(context).labelSjr,
             S.of(context).hintTextPhone,
             Icons.person,
@@ -281,7 +307,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
             textInputType: TextInputType.phone,
           ),
           _textField(
-            _controllerEmailFilledOne,
+            editingController[16],
             S.of(context).labelText,
             S.of(context).hintText,
             Icons.text_fields_sharp,
@@ -293,10 +319,10 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
   _appWidget() => Column(
         children: [
           _textField(
-            _controllerEmailFilledOne,
+            editingController[17],
             S.of(context).labelApp,
             S.of(context).hintTextUrl,
-            Icons.person,
+            Icons.link_outlined,
             helpText:
                 "https://play.google.com/store/apps/details?id=com.xhx.woodenfishs",
             textInputType: TextInputType.url,
@@ -309,19 +335,72 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         padding: const EdgeInsets.only(top: 20),
         child: ElevatedButton(
           onPressed: () {
-            // 'tel:+1234567890', // 替换为您的电话号码
-            // sms:+1234567890
-            // 'WIFI:T:WPA;S:MyWiFi;P:password;;', // 替换为您的Wi-Fi配置
-            // 'mailto:example@example.com?cc=example2@example.com&subject=Hello&body=Hello%20World',
+            content.clear();
+            switch (selectTitleIndex) {
+              case 0:
+                content.write(editingController[0].text);
+                break;
+              case 1:
+                final vCard = VCard();
+                vCard.firstName = editingController[1].text;
+                vCard.workPhone = editingController[2].text;
+                vCard.organization = editingController[3].text;
+                vCard.jobTitle = editingController[4].text;
+                vCard.email = editingController[5].text;
+                vCard.workAddress.street = editingController[6].text;
+                content.write(vCard.getFormattedString());
+                break;
+              case 2:
+                // 'mailto:example@example.com?cc=example2@example.com&subject=Hello&body=Hello%20World',
+                content.write("mailto:");
+                content.write(editingController[7].text);
+                content.write("?cc=");
+                content.write(editingController[8].text);
+                content.write("&subject=");
+                content.write(editingController[9].text);
+                content.write("&body=");
+                content.write(editingController[10].text);
+                break;
+              case 3:
+                // 'tel:+1234567890', // 替换为您的电话号码
+                content.write("tel:");
+                content.write(editingController[11].text);
+                break;
+              case 4:
+                content.write(editingController[12].text);
+                break;
+              case 5:
+                // WIFI:T:WPA;S:MyWiFi;P:password;;
+                content.write("WIFI:T:");
+                content.write(wifiEnumView.name);
+                content.write("S:");
+                content.write(editingController[12].text);
+                content.write("P:");
+                content.write(editingController[13].text);
+                content.write(";;");
+                break;
+              case 6:
+                // sms:+1234567890
+                content.write("sms:");
+                content.write(editingController[15].text);
+                content.write("?body=");
+                content.write(editingController[16].text);
+                break;
+              case 7:
+                content.write(editingController[17].text);
+                break;
+            }
+
             var maps = {
               "title": title[selectTitleIndex],
               "index": selectTitleIndex,
-              "content": _controllerTxtFilled.text,
+              "enumType": QrTypeEnum.values[selectTitleIndex],
+              "content": content.toString(),
             };
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => CreateViewPage(
+                builder: (context) => QrCreateViewPage(
                   map: maps,
                 ),
               ),
@@ -336,7 +415,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
       {String? helpText,
       TextInputType? textInputType = TextInputType.multiline}) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 20),
       child: TextField(
         controller: textEditingController,
         maxLines: null,

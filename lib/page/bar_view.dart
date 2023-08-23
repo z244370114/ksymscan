@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../generated/l10n.dart';
 import '../utils/img_util.dart';
+import '../widget/clear_button.dart';
+import 'bar_create_view.dart';
 
 class BarCodeViewPage extends StatefulWidget {
   const BarCodeViewPage({super.key});
@@ -12,10 +14,10 @@ class BarCodeViewPage extends StatefulWidget {
 
 class _BarCodeViewPageState extends State<BarCodeViewPage> {
   List<String> imageUrl = [
+    'code128-a',
+    'code128-a',
+    'code128-a',
     'code128',
-    'code128-a',
-    'code128-a',
-    'code128-a',
     'code39',
     'code93',
     'code39extended',
@@ -27,15 +29,33 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
   ];
 
   var title = [];
+  var hintTexts = [];
+  var selectTitleIndex = 0;
+
+  final List<TextEditingController> editingController = [];
 
   @override
   void initState() {
     super.initState();
+    for (int i = 0; i < 12; i++) {
+      editingController.add(TextEditingController());
+    }
   }
 
   initTitle() {
     title = S.of(context).barTitle.split(',');
-    print(title.toString());
+    hintTexts.add(S.of(context).hintTextCode128A);
+    hintTexts.add(S.of(context).hintTextCode128B);
+    hintTexts.add(S.of(context).hintTextCode128C);
+    hintTexts.add(S.of(context).hintTextCode128Auto);
+    hintTexts.add(S.of(context).hintTextCode39);
+    hintTexts.add(S.of(context).hintTextCode93);
+    hintTexts.add(S.of(context).hintTextExtended);
+    hintTexts.add(S.of(context).hintTextCodabar);
+    hintTexts.add(S.of(context).hintTextEAN13);
+    hintTexts.add(S.of(context).hintTextEAN8);
+    hintTexts.add(S.of(context).hintTextUPCA);
+    hintTexts.add(S.of(context).hintTextUPCE);
   }
 
   @override
@@ -49,14 +69,31 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
             margin: const EdgeInsets.all(12),
             elevation: 1,
             child: GridView.builder(
-                itemCount: imageUrl.length,
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, //
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return _buildItem(index);
-                }),
+              itemCount: imageUrl.length,
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4, //
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return _buildItem(index);
+              },
+            ),
+          ),
+          Title(
+            color: Colors.black,
+            child: Text(
+              title[selectTitleIndex],
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(12),
+            elevation: 1,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              width: double.infinity,
+              child: _contentWidget(),
+            ),
           ),
         ],
       ),
@@ -64,21 +101,94 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
   }
 
   Widget _buildItem(int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image(
-          image: ImgUtil.getAssetImage(imageUrl[index]),
-          width: 50,
-          height: 50,
-        ),
-        Text(
-          title[index],
-          style: TextStyle(
-            overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () {
+        setState(() {
+          selectTitleIndex = index;
+        });
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+            image: ImgUtil.getAssetImage(imageUrl[index]),
+            width: 50,
+            height: 50,
           ),
+          Text(
+            title[index],
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
+      ),
+    );
+  }
+
+  _contentWidget() => Column(
+        children: [
+          _textField(
+            editingController[selectTitleIndex],
+            title[selectTitleIndex],
+            hintTexts[selectTitleIndex],
+            Icons.text_fields_outlined,
+          ),
+          _createButton(),
+        ],
+      );
+
+  _createButton() => Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: ElevatedButton(
+          onPressed: () {
+            // 'tel:+1234567890', // 替换为您的电话号码
+            // sms:+1234567890
+            // 'WIFI:T:WPA;S:MyWiFi;P:password;;', // 替换为您的Wi-Fi配置
+            // 'mailto:example@example.com?cc=example2@example.com&subject=Hello&body=Hello%20World',
+            var maps = {
+              "title": title[selectTitleIndex],
+              "index": selectTitleIndex,
+              "content": editingController[selectTitleIndex].text,
+            };
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BarCreateViewPage(
+                  map: maps,
+                ),
+              ),
+            );
+          },
+          child: Text(S.of(context).btnCreate),
         ),
-      ],
+      );
+
+  _textField(TextEditingController textEditingController, String label,
+      String hintText, IconData iconData,
+      {String? helpText,
+      TextInputType? textInputType = TextInputType.multiline}) {
+    return Container(
+      padding: const EdgeInsets.only(top: 10),
+      child: TextField(
+        controller: textEditingController,
+        keyboardType: textInputType,
+        maxLines: 7,
+        minLines: 2,
+        decoration: InputDecoration(
+          label: Text(label),
+          prefixIcon: Icon(iconData),
+          iconColor: Colors.black,
+          contentPadding: EdgeInsets.all(10),
+          border: OutlineInputBorder(),
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+          helperText: helpText,
+          helperStyle: TextStyle(color: Colors.grey, fontSize: 15),
+          suffixIcon: ClearButton(controller: textEditingController),
+        ),
+        onEditingComplete: () {},
+        onChanged: (v) {},
+        onSubmitted: (v) {},
+      ),
     );
   }
 }

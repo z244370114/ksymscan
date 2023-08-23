@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 import '../generated/l10n.dart';
 
-class CreateViewPage extends StatefulWidget {
+class BarCreateViewPage extends StatefulWidget {
   final Map map;
 
-  const CreateViewPage({
+  const BarCreateViewPage({
     Key? key,
     required this.map,
   }) : super(key: key);
 
   @override
-  State<CreateViewPage> createState() => _CreateViewPageState();
+  State<BarCreateViewPage> createState() => _BarCreateViewPageState();
 }
 
-class _CreateViewPageState extends State<CreateViewPage> {
-  late Symbology symbology;
+class _BarCreateViewPageState extends State<BarCreateViewPage> {
   late String content;
 
   @override
@@ -26,9 +24,6 @@ class _CreateViewPageState extends State<CreateViewPage> {
     content = widget.map['content'];
     switch (widget.map['index']) {
       case 0:
-        symbology = QRCode(
-            codeVersion: QRCodeVersion.auto,
-            inputMode: QRInputMode.alphaNumeric);
         break;
       case 1:
         break;
