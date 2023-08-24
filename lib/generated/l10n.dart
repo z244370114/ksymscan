@@ -90,6 +90,16 @@ class S {
     );
   }
 
+  /// `扫描`
+  String get scanTitle {
+    return Intl.message(
+      '扫描',
+      name: 'scanTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `二维码`
   String get qrcode {
     return Intl.message(

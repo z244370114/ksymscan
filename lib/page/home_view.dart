@@ -7,6 +7,7 @@ import 'package:ksymscan/page/qr_view.dart';
 import '../generated/l10n.dart';
 import 'history_view.dart';
 import 'me_view.dart';
+import 'scan_view.dart';
 import 'settings_view.dart';
 
 class HomeViewPage extends StatefulWidget {
@@ -50,10 +51,17 @@ class _HomeViewPageState extends State<HomeViewPage>
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title[currentPageIndex]),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.qr_code_scanner_rounded),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ScanViewPage(),
+            ),
+          );
+        },
+        child: Icon(Icons.qr_code_scanner_rounded),
+      ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
       bottomNavigationBar: NavigationBar(
         labelBehavior: labelBehavior,

@@ -433,6 +433,7 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 ),
               ),
             );
+
           },
           child: Text(S.of(context).btnCreate),
         ),

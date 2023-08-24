@@ -101,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "qrcode": MessageLookupByLibrary.simpleMessage("二维码"),
         "saveFail": MessageLookupByLibrary.simpleMessage("保存失败"),
         "saveSuccess": MessageLookupByLibrary.simpleMessage("保存成功"),
+        "scanTitle": MessageLookupByLibrary.simpleMessage("扫描"),
         "setting": MessageLookupByLibrary.simpleMessage("设置"),
         "shareApp": MessageLookupByLibrary.simpleMessage("分享应用"),
         "userAgreement": MessageLookupByLibrary.simpleMessage("用户协议"),

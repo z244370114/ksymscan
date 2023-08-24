@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.1.12
   webview_flutter: ^4.2.2
   umeng_common_sdk: ^1.2.3
+  qr_code_scanner: ^1.0.1
 #  vcard_maintained: ^0.0.1+1
 
 dev_dependencies:

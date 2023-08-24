@@ -3,6 +3,7 @@
   "hello": "你好！",
   "home": "首页",
   "history": "历史记录",
+  "scanTitle": "扫描",
   "qrcode": "二维码",
   "barcode": "条形码",
   "shareApp": "分享应用",
