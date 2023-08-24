@@ -142,46 +142,47 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
         ],
       );
 
-  _createButton() => Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: ElevatedButton(
-          onPressed: () {
-            if (editingController[selectTitleIndex].text.isEmpty) {
-              final snackBar = SnackBar(
-                behavior: SnackBarBehavior.floating,
-                width: 400.0,
-                content: Text(S.of(context).hintTextNull),
-                action: SnackBarAction(
-                  label: S.of(context).close,
-                  onPressed: () {},
-                ),
-              );
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              return;
-            }
+  _createButton() => Container(
+    width: double.infinity,
+    margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+    child: ElevatedButton(
+      onPressed: () {
+        if (editingController[selectTitleIndex].text.isEmpty) {
+          final snackBar = SnackBar(
+            behavior: SnackBarBehavior.floating,
+            width: 400.0,
+            content: Text(S.of(context).hintTextNull),
+            action: SnackBarAction(
+              label: S.of(context).close,
+              onPressed: () {},
+            ),
+          );
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          return;
+        }
 
-            var qrBarData = QrBarData();
-            qrBarData.imgUrl = imageUrl[selectTitleIndex];
-            qrBarData.title = title[selectTitleIndex];
-            qrBarData.index = selectTitleIndex;
-            // qrBarData.enumType = QrTypeEnum.values[selectTitleIndex];
-            qrBarData.content = editingController[selectTitleIndex].text;
-            qrBarData.contents = [editingController[selectTitleIndex].text];
-            Application.addQrBarData(qrBarData);
+        var qrBarData = QrBarData();
+        qrBarData.imgUrl = imageUrl[selectTitleIndex];
+        qrBarData.title = title[selectTitleIndex];
+        qrBarData.index = selectTitleIndex;
+        // qrBarData.enumType = QrTypeEnum.values[selectTitleIndex];
+        qrBarData.content = editingController[selectTitleIndex].text;
+        qrBarData.contents = [editingController[selectTitleIndex].text];
+        Application.addQrBarData(qrBarData);
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BarCreateViewPage(
-                  qrBarData: qrBarData,
-                ),
-              ),
-            );
-          },
-          child: Text(S.of(context).btnCreate),
-        ),
-      );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BarCreateViewPage(
+              qrBarData: qrBarData,
+            ),
+          ),
+        );
+      },
+      child: Text(S.of(context).btnCreate),
+    ),
+  );
 
   _textField(
     TextEditingController textEditingController,

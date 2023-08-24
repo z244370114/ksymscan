@@ -44,6 +44,9 @@ dependencies:
   path_provider: ^2.1.0
   flutter_colorpicker: ^1.0.3
   share_plus: ^7.1.0
+  url_launcher: ^6.1.12
+  webview_flutter: ^4.2.2
+  umeng_common_sdk: ^1.2.3
 #  vcard_maintained: ^0.0.1+1
 
 dev_dependencies:

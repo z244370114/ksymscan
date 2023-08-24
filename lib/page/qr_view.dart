@@ -338,8 +338,9 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         ],
       );
 
-  _createButton() => Padding(
-        padding: const EdgeInsets.only(top: 20),
+  _createButton() => Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 10, left: 20, right: 20),
         child: ElevatedButton(
           onPressed: () {
             content.clear();

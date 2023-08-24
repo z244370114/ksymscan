@@ -1,10 +1,11 @@
 {
-  "appName": "木鱼 - 念经神器",
+  "appName": "二维码和条形码制作",
   "hello": "你好！",
   "home": "首页",
   "history": "历史记录",
   "qrcode": "二维码",
   "barcode": "条形码",
+  "shareApp": "分享应用",
   "me": "我的",
   "setting": "设置",
   "privacyPolicy": "隐私政策",

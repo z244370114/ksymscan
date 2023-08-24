@@ -15,44 +15,59 @@ class _SettingsViewPageState extends State<SettingsViewPage> {
     return Container(
       height: double.infinity,
       width: double.infinity,
+      color: Colors.grey[100],
       child: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 50,
-            child: Card(
-              margin: const EdgeInsets.only(top: 12),
-              elevation: 1,
-              child: Text(S.of(context).wfIntroduction),
+          TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.sentiment_satisfied),
+            label: Container(
+              width: double.infinity,
+              child: Text(S.of(context).aboutUs),
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: 50,
-            child: Card(
-              margin: const EdgeInsets.only(top: 12),
-              elevation: 1,
+          TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.sentiment_satisfied),
+            label: Container(
+              width: double.infinity,
               child: Text(S.of(context).givePraise),
             ),
           ),
           TextButton.icon(
-            style: ButtonStyle(
-                textStyle: MaterialStateProperty.all(
-                    const TextStyle(color: Colors.white70)),
-                alignment: Alignment.centerLeft,
-                minimumSize: MaterialStateProperty.all(const Size(200, 50))),
-            icon: const Icon(
-              Icons.deck_rounded,
-              color: Colors.white70,
-            ),
-            label: Text(
-              S.of(context).aboutUs,
-              style: TextStyle(
-                color: Colors.white70,
-              ),
-            ),
             onPressed: () {},
+            icon: Icon(Icons.thumb_up),
+            label: Container(
+              width: double.infinity,
+              child: Text(S.of(context).givePraise),
+            ),
           ),
+          TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.share_outlined),
+            label: Container(
+              width: double.infinity,
+              child: Text(S.of(context).shareApp),
+            ),
+          ),
+          // Container(
+          //   width: double.infinity,
+          //   height: 50,
+          //   child: Card(
+          //     margin: const EdgeInsets.only(top: 12),
+          //     elevation: 1,
+          //     child: Text(S.of(context).wfIntroduction),
+          //   ),
+          // ),
+          // Container(
+          //   width: double.infinity,
+          //   height: 50,
+          //   child: Card(
+          //     margin: const EdgeInsets.only(top: 12),
+          //     elevation: 1,
+          //     child: Text(S.of(context).givePraise),
+          //   ),
+          // ),
         ],
       ),
     );

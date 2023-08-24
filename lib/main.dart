@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: colorSelectionMethod == ColorSelectionMethod.image
             ? imageColorScheme
             : null,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           centerTitle: true,
         ),
         useMaterial3: useMaterial3,
@@ -60,6 +60,7 @@ class _MyAppState extends State<MyApp> {
         GlobalMaterialLocalizations.delegate,
         S.delegate,
       ],
+      // title: S.of(context).appName,
       home: HomeViewPage(),
     );
   }

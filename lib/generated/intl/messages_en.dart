@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "木鱼 - 念经神器是一款修炼App，模拟真实木鱼敲击，帮用户静心解压。木鱼是一种法器，多用于佛教、道教的功课与法会。相传鱼昼夜不合目，故刻木像鱼形，击之以警戒僧众应昼夜思道。形制有二：一为挺直鱼形，用来粥饭或集众、警众，悬挂在寺院走廊上。二为圆状鱼形，诵经时所用，放在案上。明、清以来，民间音乐和潮剧、粤剧中常用到木鱼。使木鱼除法器外兼具乐器功能\\n木鱼由来:唐代高僧玄奘大师从西域取经归来时，途经蜀地，遇一长者，到其家化斋。长者之子被后母陷害，扔进了河里，被一条大鱼吞食。恰好那天玄奘大师偏要吃鱼，长者只好出去买回了一条大鱼。在剖鱼的时候，从鱼腹中救出了自己的孩儿。玄奘大师说：“这正是此儿夙愿把持佛律中不杀戒的因果报应，所以虽被鱼吞，却得不死。”长者说：“那怎么样才能报答鱼恩呢。”玄奘大帅告诉说：“鱼为救孩而牺牲，应该用木雕成鱼形，悬于佛寺之中，每逢斋饭时敲击，以此可报大鱼之德。"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("关于我们"),
         "agree": MessageLookupByLibrary.simpleMessage("同意"),
-        "appName": MessageLookupByLibrary.simpleMessage("木鱼 - 念经神器"),
+        "appName": MessageLookupByLibrary.simpleMessage("二维码和条形码制作"),
         "barTitle": MessageLookupByLibrary.simpleMessage(
             "Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E"),
         "barcode": MessageLookupByLibrary.simpleMessage("条形码"),
@@ -102,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveFail": MessageLookupByLibrary.simpleMessage("保存失败"),
         "saveSuccess": MessageLookupByLibrary.simpleMessage("保存成功"),
         "setting": MessageLookupByLibrary.simpleMessage("设置"),
+        "shareApp": MessageLookupByLibrary.simpleMessage("分享应用"),
         "userAgreement": MessageLookupByLibrary.simpleMessage("用户协议"),
         "userAgreementTip": MessageLookupByLibrary.simpleMessage(
             "“木鱼 - 念经神器”主要用于平静内心情绪，防止冲动,我们在向您提供服务时，可能需要收集使用您账号相关信息及调用账号服务,存储,读取手机状态和身份,和一点网络信息及网络服务权限，我们承诺您的个人信息仅用于我们声明的目的。点击“同意”即表示您同意上述内容。"),

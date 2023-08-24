@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `木鱼 - 念经神器`
+  /// `二维码和条形码制作`
   String get appName {
     return Intl.message(
-      '木鱼 - 念经神器',
+      '二维码和条形码制作',
       name: 'appName',
       desc: '',
       args: [],
@@ -105,6 +105,16 @@ class S {
     return Intl.message(
       '条形码',
       name: 'barcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `分享应用`
+  String get shareApp {
+    return Intl.message(
+      '分享应用',
+      name: 'shareApp',
       desc: '',
       args: [],
     );
