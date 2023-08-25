@@ -48,6 +48,7 @@ dependencies:
   webview_flutter: ^4.2.2
   umeng_common_sdk: ^1.2.3
   qr_code_scanner: ^1.0.1
+  font_awesome_flutter: ^10.5.0
 #  vcard_maintained: ^0.0.1+1
 
 dev_dependencies:

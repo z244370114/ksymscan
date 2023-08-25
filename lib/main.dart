@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       themeMode: themeMode,
       theme: ThemeData(
         colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed

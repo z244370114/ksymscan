@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `复制成功`
+  String get copySuccess {
+    return Intl.message(
+      '复制成功',
+      name: 'copySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `我的`
   String get me {
     return Intl.message(

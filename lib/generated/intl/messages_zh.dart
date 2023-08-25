@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "btnCreate": MessageLookupByLibrary.simpleMessage("开始制作"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "close": MessageLookupByLibrary.simpleMessage("关闭"),
+        "copySuccess": MessageLookupByLibrary.simpleMessage("复制成功"),
         "givePraise": MessageLookupByLibrary.simpleMessage("给好评"),
         "hello": MessageLookupByLibrary.simpleMessage("你好！"),
         "hintText": MessageLookupByLibrary.simpleMessage("请输入文本"),
