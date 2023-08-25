@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../model/qr_bar_data.dart';
+import '../utils/event_bus.dart';
 import 'c_key.dart';
 
 class Application {
@@ -22,20 +23,18 @@ class Application {
   }
 
   static void addQrBarData(QrBarData qrBarData) {
-    return;
+    EventBus.getDefault().post(qrBarData);
     if (!getStorage.hasData(CKey.listQrBarData)) {
-      List<Map<String, dynamic>> qrbarDatas = [];
-      qrbarDatas.add(qrBarData.toJson());
-      // jsonEncode(object)
-      getStorage.write(CKey.listQrBarData, qrBarData.toJson());
+      getStorage.write(CKey.listQrBarData, [qrBarData]);
     } else {
-      var listQrBarData =
-      getStorage.read(CKey.listQrBarData) as List<QrBarData>;
+      var listQrBarData = getQrBarDataList();
       listQrBarData.insert(0, qrBarData);
-      for (var element in listQrBarData) {
-        element.toJson();
-      }
       getStorage.write(CKey.listQrBarData, listQrBarData);
     }
+  }
+
+  static List<dynamic> getQrBarDataList() {
+    var read = getStorage.read(CKey.listQrBarData);
+    return read ?? [];
   }
 }

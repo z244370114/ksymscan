@@ -418,10 +418,10 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 break;
             }
             var qrBarData = QrBarData();
-            qrBarData.iconUrl = imageUrl[selectTitleIndex];
+            qrBarData.iconUrl = imageUrl[selectTitleIndex].codePoint;
             qrBarData.title = title[selectTitleIndex];
             qrBarData.index = selectTitleIndex;
-            qrBarData.enumType = QrTypeEnum.values[selectTitleIndex];
+            qrBarData.enumType = QrTypeEnum.values[selectTitleIndex].name;
             qrBarData.content = content.toString();
             qrBarData.contents = contents.cast<String>();
             Application.addQrBarData(qrBarData);
@@ -433,7 +433,6 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
                 ),
               ),
             );
-
           },
           child: Text(S.of(context).btnCreate),
         ),

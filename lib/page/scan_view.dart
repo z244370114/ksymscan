@@ -48,7 +48,7 @@ class _ScanViewPageState extends State<ScanViewPage> {
                   if (result != null)
                     TextButton.icon(
                       onPressed: () {
-                        PubMethodUtils.copyToClipboard(result!.code!);
+                        PubMethodUtils.copyToClipboard(context,result!.code!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(S.of(context).copySuccess)),
                         );

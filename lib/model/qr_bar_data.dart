@@ -1,14 +1,10 @@
-import 'package:barcode_widget/barcode_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:ksymscan/common/constants.dart';
-
 class QrBarData {
-  IconData? iconUrl;
+  int? iconUrl;
   String? imgUrl;
   String? title;
   int? index;
-  QrTypeEnum? enumType;
-  BarcodeType? barcodeType;
+  String? enumType;
+  String? barcodeType;
   String? content;
   List<String>? contents;
 
@@ -17,7 +13,7 @@ class QrBarData {
     this.imgUrl,
     this.title,
     this.index,
-    this.enumType,
+    this.enumType = '',
     this.content,
     this.contents,
   });
@@ -30,6 +26,7 @@ class QrBarData {
     enumType = json['enumType'];
     content = json['content'];
     if (json['contents'] != null) {
+      contents = [];
       json['contents'].forEach((v) {
         contents!.add(v);
       });

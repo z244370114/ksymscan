@@ -149,8 +149,6 @@ class _BarCodeViewPageState extends State<BarCodeViewPage> {
       onPressed: () {
         if (editingController[selectTitleIndex].text.isEmpty) {
           final snackBar = SnackBar(
-            behavior: SnackBarBehavior.floating,
-            width: 400.0,
             content: Text(S.of(context).hintTextNull),
             action: SnackBarAction(
               label: S.of(context).close,

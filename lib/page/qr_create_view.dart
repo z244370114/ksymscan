@@ -146,7 +146,12 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                         qrBarData.title!,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      leading: Icon(qrBarData.iconUrl!),
+                      leading: Icon(
+                        IconData(
+                          qrBarData.iconUrl!,
+                          fontFamily: 'MaterialIcons',
+                        ),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: qrBarData.contents!
@@ -160,7 +165,7 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                       ),
                       trailing: IconButton.filledTonal(
                         onPressed: () {
-                          PubMethodUtils.copyToClipboard(qrBarData.content!);
+                          PubMethodUtils.copyToClipboard(context,qrBarData.content!);
                         },
                         icon: Icon(
                           Icons.copy_outlined,

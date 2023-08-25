@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:ui' as ui;
 
 import '../common/constants.dart';
+import '../generated/l10n.dart';
 import 'PlatformUtils.dart';
 
 class PubMethodUtils {
@@ -57,7 +58,13 @@ class PubMethodUtils {
     return bytes;
   }
 
-  static void copyToClipboard(String text) {
+  static void copyToClipboard(BuildContext context, String text) {
     Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text("${S.of(context).copySuccess}"),
+          duration: Duration(milliseconds: 500)),
+    );
   }
 }

@@ -4,7 +4,10 @@ import 'package:ksymscan/model/app_info_data.dart';
 import 'package:ksymscan/page/bar_view.dart';
 import 'package:ksymscan/page/qr_view.dart';
 
+import '../common/c_key.dart';
 import '../generated/l10n.dart';
+import '../model/qr_bar_data.dart';
+import '../utils/event_bus.dart';
 import 'history_view.dart';
 import 'me_view.dart';
 import 'scan_view.dart';
@@ -26,7 +29,7 @@ class _HomeViewPageState extends State<HomeViewPage>
   final List<Widget> screens = [
     QrCodeViewPage(),
     BarCodeViewPage(),
-    // HistoryViewPage(),
+    HistoryViewPage(),
     MeViewPage(),
   ];
   final List<String> title = [];
@@ -39,8 +42,8 @@ class _HomeViewPageState extends State<HomeViewPage>
   initTitle() {
     title.add(S.of(context).qrcode);
     title.add(S.of(context).barcode);
+    title.add(S.of(context).history);
     title.add(S.of(context).me);
-    // title.add(S.of(context).history);
   }
 
   @override
@@ -50,6 +53,19 @@ class _HomeViewPageState extends State<HomeViewPage>
       appBar: AppBar(
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title[currentPageIndex]),
+        actions: [
+          currentPageIndex == 2
+              ? Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: InkWell(
+                    onTap: () {
+                      openDialog(context);
+                    },
+                    child: Icon(Icons.delete),
+                  ),
+                )
+              : Container()
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -71,6 +87,9 @@ class _HomeViewPageState extends State<HomeViewPage>
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
+            if (index == 2) {
+              EventBus.getDefault().post('isHistory');
+            }
           });
         },
         destinations: <Widget>[
@@ -84,11 +103,11 @@ class _HomeViewPageState extends State<HomeViewPage>
             icon: Icon(Icons.barcode_reader),
             label: S.of(context).barcode,
           ),
-          // NavigationDestination(
-          //   tooltip: "",
-          //   icon: Icon(Icons.history),
-          //   label: S.of(context).history,
-          // ),
+          NavigationDestination(
+            tooltip: "",
+            icon: Icon(Icons.history),
+            label: S.of(context).history,
+          ),
           NavigationDestination(
             tooltip: "",
             icon: Icon(Icons.person_2_sharp),
@@ -99,6 +118,28 @@ class _HomeViewPageState extends State<HomeViewPage>
       body: IndexedStack(
         index: currentPageIndex,
         children: screens,
+      ),
+    );
+  }
+
+  void openDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(S.of(context).clearHistory),
+        actions: <Widget>[
+          TextButton(
+            child: Text(S.of(context).submits),
+            onPressed: () {
+              EventBus.getDefault().post("clear");
+              Navigator.of(context).pop();
+            },
+          ),
+          FilledButton(
+            child: Text(S.of(context).cancel),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
       ),
     );
   }

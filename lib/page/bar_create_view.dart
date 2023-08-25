@@ -196,7 +196,8 @@ class _BarCreateViewPageState extends State<BarCreateViewPage> {
                       ),
                       trailing: IconButton.filledTonal(
                         onPressed: () {
-                          PubMethodUtils.copyToClipboard(qrBarData.content!);
+                          PubMethodUtils.copyToClipboard(
+                              context, qrBarData.content!);
                         },
                         icon: Icon(
                           Icons.copy_outlined,
