@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
       //     centerTitle: true,
       //   ),
       // ),
-      // supportedLocales: S.delegate.supportedLocales,
+      supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
