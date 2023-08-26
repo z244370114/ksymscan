@@ -1,13 +1,13 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:ksymscan/model/app_info_data.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:umeng_common_sdk/umeng_common_sdk.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui' as ui;
 
 import '../common/constants.dart';
@@ -68,5 +68,39 @@ class PubMethodUtils {
           content: Text("${S.of(context).copySuccess}"),
           duration: Duration(milliseconds: 500)),
     );
+  }
+
+  static void scanPath(Barcode barcode) {
+    var parse = Uri.parse(barcode.code.toString());
+    launchUrl(parse);
+    // if (content.contains("tel")) {
+    //   emailLaunchUri = Uri(
+    //     scheme: 'tel',
+    //     path: content.substring(4, content.length),
+    //   );
+    // } else if (content.contains("sms")) {
+    //   emailLaunchUri = Uri(
+    //       scheme: 'sms',
+    //       path: content.substring(4, 15),
+    //       queryParameters: <String, String>{
+    //         'body': Uri.encodeComponent(content.substring(16, content.length)),
+    //       });
+    // } else if (content.contains("mailto")) {
+    //   emailLaunchUri = Uri(
+    //     scheme: 'mailto',
+    //     path: 'smith@example.com',
+    //     query: encodeQueryParameters(<String, String>{
+    //       'subject': 'Example Subject & Symbols are allowed!',
+    //     }),
+    //   );
+    // }
+    // launchUrl(emailLaunchUri);
+  }
+
+  static String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 }

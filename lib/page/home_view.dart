@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ksymscan/common/application.dart';
-import 'package:ksymscan/model/app_info_data.dart';
 import 'package:ksymscan/page/bar_view.dart';
 import 'package:ksymscan/page/qr_view.dart';
 import 'package:ksymscan/utils/pub_method.dart';
 
-import '../common/c_key.dart';
 import '../generated/l10n.dart';
-import '../model/qr_bar_data.dart';
 import '../utils/event_bus.dart';
 import 'history_view.dart';
 import 'me_view.dart';
 import 'scan_view.dart';
-import 'settings_view.dart';
 
 class HomeViewPage extends StatefulWidget {
   const HomeViewPage({super.key});

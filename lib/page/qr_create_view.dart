@@ -92,7 +92,7 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                           onPressed: () async {
                             Map result =
                                 await PubMethodUtils.saveWidgetAsImage();
-                            directoryPath = result['file'];
+                            directoryPath = result['filePath'];
                             final snackBar = SnackBar(
                               behavior: SnackBarBehavior.floating,
                               width: 400.0,
@@ -165,7 +165,8 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                       ),
                       trailing: IconButton.filledTonal(
                         onPressed: () {
-                          PubMethodUtils.copyToClipboard(context,qrBarData.content!);
+                          PubMethodUtils.copyToClipboard(
+                              context, qrBarData.content!);
                         },
                         icon: Icon(
                           Icons.copy_outlined,

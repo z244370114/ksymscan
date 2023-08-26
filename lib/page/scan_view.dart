@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../generated/l10n.dart';
 import '../utils/pub_method.dart';
@@ -48,7 +49,7 @@ class _ScanViewPageState extends State<ScanViewPage> {
                   if (result != null)
                     TextButton.icon(
                       onPressed: () {
-                        PubMethodUtils.copyToClipboard(context,result!.code!);
+                        PubMethodUtils.copyToClipboard(context, result!.code!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(S.of(context).copySuccess)),
                         );
@@ -73,11 +74,13 @@ class _ScanViewPageState extends State<ScanViewPage> {
                           icon: FutureBuilder(
                             future: controller?.getFlashStatus(),
                             builder: (context, snapshot) {
+                              var isShow = true;
+                              if (snapshot.data is bool) {
+                                isShow = snapshot.data!;
+                              }
                               return Icon(
                                 FontAwesomeIcons.boltLightning,
-                                color: snapshot.data as bool
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: isShow ? Colors.white : Colors.black,
                               );
                             },
                           ),
@@ -143,6 +146,7 @@ class _ScanViewPageState extends State<ScanViewPage> {
       setState(() {
         result = scanData;
       });
+      PubMethodUtils.scanPath(scanData);
     });
   }
 
