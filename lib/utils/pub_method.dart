@@ -5,19 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:ksymscan/model/app_info_data.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:umeng_common_sdk/umeng_common_sdk.dart';
 import 'dart:ui' as ui;
 
 import '../common/constants.dart';
 import '../generated/l10n.dart';
+import '../plugin/method_plugin.dart';
 import 'PlatformUtils.dart';
 
 class PubMethodUtils {
-  static void umengCommonSdkInit() {
-    // MethodPlugin.getAppChannelId().then((value) {
-    //   UmengCommonSdk.initCommon(
-    //       '64abe8b8a1a164591b48e54e', '64abe8b8a1a164591b48e54e', value);
-    // });
+  static void umengCommonSdkInit() async {
+    var appInfo = await MethodPlugin.appInfo;
+    UmengCommonSdk.initCommon('64e6d9658efadc41dccaaf26',
+        '64e6d9658efadc41dccaaf26', appInfo.channelId.toString());
   }
 
   static String jiexiContent(int type, String contents) {

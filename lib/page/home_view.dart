@@ -3,6 +3,7 @@ import 'package:ksymscan/common/application.dart';
 import 'package:ksymscan/model/app_info_data.dart';
 import 'package:ksymscan/page/bar_view.dart';
 import 'package:ksymscan/page/qr_view.dart';
+import 'package:ksymscan/utils/pub_method.dart';
 
 import '../common/c_key.dart';
 import '../generated/l10n.dart';
@@ -37,6 +38,7 @@ class _HomeViewPageState extends State<HomeViewPage>
   @override
   void initState() {
     super.initState();
+    PubMethodUtils.umengCommonSdkInit();
   }
 
   initTitle() {
