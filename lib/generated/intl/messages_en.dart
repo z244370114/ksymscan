@@ -104,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lookPhoto": MessageLookupByLibrary.simpleMessage("Preview Image"),
         "me": MessageLookupByLibrary.simpleMessage("My"),
         "noData": MessageLookupByLibrary.simpleMessage("No history record"),
+        "pickAcolor": MessageLookupByLibrary.simpleMessage("Pick a color"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "qrTitle": MessageLookupByLibrary.simpleMessage(
             "Plain text, business card, email, mobile number, website, Wi-Fi, SMS, application"),

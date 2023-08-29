@@ -160,6 +160,16 @@ class S {
     );
   }
 
+  /// `Pick a color`
+  String get pickAcolor {
+    return Intl.message(
+      'Pick a color',
+      name: 'pickAcolor',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No history record`
   String get noData {
     return Intl.message(

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ksymscan/common/constants.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -27,6 +28,8 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
   final GlobalKey widgetKey = GlobalKey();
 
   var directoryPath = "";
+
+  Color selectedColor = Colors.white;
 
   @override
   void initState() {
@@ -80,7 +83,7 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                         child: QrImageView(
                           data: qrBarData.content!,
                           version: QrVersions.auto,
-                          backgroundColor: Colors.white,
+                          backgroundColor: selectedColor,
                           size: 200,
                         ),
                       ),
@@ -110,6 +113,22 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
                           },
                           icon: const Icon(
                             Icons.download_rounded,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _openColorPicker();
+                          },
+                          child: Container(
+                            width: 70,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: selectedColor,
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                            ),
                           ),
                         ),
                         IconButton.filledTonal(
@@ -181,5 +200,38 @@ class _QrCreateViewPageState extends State<QrCreateViewPage> {
         ),
       ),
     );
+  }
+
+  void _openColorPicker() async {
+    Color color = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(S.of(context).pickAcolor),
+          content: ColorPicker(
+            color: selectedColor,
+            onColorChanged: (Color color) {
+              setState(() {
+                selectedColor = color;
+              });
+            },
+            enableTonalPalette: false,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(S.of(context).submits),
+            ),
+          ],
+        );
+      },
+    );
+    if (color != null) {
+      setState(() {
+        selectedColor = color;
+      });
+    }
   }
 }

@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lookPhoto": MessageLookupByLibrary.simpleMessage("预览图片"),
         "me": MessageLookupByLibrary.simpleMessage("我的"),
         "noData": MessageLookupByLibrary.simpleMessage("暂无历史记录"),
+        "pickAcolor": MessageLookupByLibrary.simpleMessage("颜色选择"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("隐私政策"),
         "qrTitle": MessageLookupByLibrary.simpleMessage(
             "纯文本,名片,邮箱,手机号,网址,Wi-Fi,短信,应用"),
