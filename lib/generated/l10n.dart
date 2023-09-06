@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `and`
+  String get and {
+    return Intl.message(
+      'and',
+      name: 'and',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My`
   String get me {
     return Intl.message(
@@ -745,6 +755,16 @@ class S {
     return Intl.message(
       'Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E',
       name: 'barTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `"QR code and barcode production" ,When we provide services to you, we may need to collect and use your account-related information and call account services, store, and read mobile phone status and identity , and a little network information and network service authority, we promise that your personal information will only be used for the purpose we stated. Clicking "Agree" means that you agree to the above content.`
+  String get userAgreementTip {
+    return Intl.message(
+      '"QR code and barcode production" ,When we provide services to you, we may need to collect and use your account-related information and call account services, store, and read mobile phone status and identity , and a little network information and network service authority, we promise that your personal information will only be used for the purpose we stated. Clicking "Agree" means that you agree to the above content.',
+      name: 'userAgreementTip',
       desc: '',
       args: [],
     );

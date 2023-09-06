@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutUs": MessageLookupByLibrary.simpleMessage("关于我们"),
         "agree": MessageLookupByLibrary.simpleMessage("同意"),
+        "and": MessageLookupByLibrary.simpleMessage("和"),
         "appName": MessageLookupByLibrary.simpleMessage("二维码和条形码制作"),
         "barTitle": MessageLookupByLibrary.simpleMessage(
             "Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E"),
@@ -106,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareApp": MessageLookupByLibrary.simpleMessage("分享应用"),
         "submits": MessageLookupByLibrary.simpleMessage("确定"),
         "userAgreement": MessageLookupByLibrary.simpleMessage("用户协议"),
+        "userAgreementTip": MessageLookupByLibrary.simpleMessage(
+            "“二维码和条形码制作”主要用于扫码、二维码、条形码制作,我们在向您提供服务时，可能需要收集使用您账号相关信息及调用账号服务,存储,读取手机状态和身份,和一点网络信息及网络服务权限，我们承诺您的个人信息仅用于我们声明的目的。点击“同意”即表示您同意上述内容。"),
         "version": MessageLookupByLibrary.simpleMessage("版本"),
         "wfIntroduction": MessageLookupByLibrary.simpleMessage("简介")
       };

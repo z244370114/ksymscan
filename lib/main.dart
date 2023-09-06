@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ksymscan/page/home_view.dart';
 
@@ -27,41 +28,43 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: themeMode,
-      theme: ThemeData(
-        colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
-            ? colorSelected.color
-            : null,
-        colorScheme: colorSelectionMethod == ColorSelectionMethod.image
-            ? imageColorScheme
-            : null,
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
+    return KeyboardDismissOnTap(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: themeMode,
+        theme: ThemeData(
+          colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
+              ? colorSelected.color
+              : null,
+          colorScheme: colorSelectionMethod == ColorSelectionMethod.image
+              ? imageColorScheme
+              : null,
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+          ),
+          useMaterial3: useMaterial3,
+          brightness: Brightness.light,
         ),
-        useMaterial3: useMaterial3,
-        brightness: Brightness.light,
+        // darkTheme: ThemeData(
+        //   colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
+        //       ? colorSelected.color
+        //       : imageColorScheme!.primary,
+        //   useMaterial3: useMaterial3,
+        //   brightness: Brightness.dark,
+        //   appBarTheme: AppBarTheme(
+        //     centerTitle: true,
+        //   ),
+        // ),
+        supportedLocales: S.delegate.supportedLocales,
+        localizationsDelegates: const [
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          S.delegate,
+        ],
+        // title: S.of(context).appName,
+        home: HomeViewPage(),
       ),
-      // darkTheme: ThemeData(
-      //   colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
-      //       ? colorSelected.color
-      //       : imageColorScheme!.primary,
-      //   useMaterial3: useMaterial3,
-      //   brightness: Brightness.dark,
-      //   appBarTheme: AppBarTheme(
-      //     centerTitle: true,
-      //   ),
-      // ),
-      supportedLocales: S.delegate.supportedLocales,
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        S.delegate,
-      ],
-      // title: S.of(context).appName,
-      home: HomeViewPage(),
     );
   }
 }

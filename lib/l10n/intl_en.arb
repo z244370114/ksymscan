@@ -12,6 +12,7 @@
   "submits": "OK",
   "pickAcolor": "Pick a color",
   "noData": "No history record",
+  "and": "and",
   "me": "My",
   "setting": "setting",
   "privacyPolicy": "Privacy Policy",
@@ -68,5 +69,6 @@
   "btnCreate": "Start creating",
   "lookPhoto": "Preview Image",
   "qrTitle": "Plain text, business card, email, mobile number, website, Wi-Fi, SMS, application",
-  "barTitle": "Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E"
+  "barTitle": "Code 128,Code 128A, Code 128B,Code 128C, Code 39,Code 93,Extended,Codabar,EAN-13,EAN-8,UPC-A,UPC-E",
+  "userAgreementTip": "\"QR code and barcode production\" ,When we provide services to you, we may need to collect and use your account-related information and call account services, store, and read mobile phone status and identity , and a little network information and network service authority, we promise that your personal information will only be used for the purpose we stated. Clicking \"Agree\" means that you agree to the above content."
 }

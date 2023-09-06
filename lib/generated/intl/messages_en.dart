@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "agree": MessageLookupByLibrary.simpleMessage("Agree"),
+        "and": MessageLookupByLibrary.simpleMessage("and"),
         "appName": MessageLookupByLibrary.simpleMessage(
             "QR code and barcode production"),
         "barTitle": MessageLookupByLibrary.simpleMessage(
@@ -117,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareApp": MessageLookupByLibrary.simpleMessage("Share App"),
         "submits": MessageLookupByLibrary.simpleMessage("OK"),
         "userAgreement": MessageLookupByLibrary.simpleMessage("User Agreement"),
+        "userAgreementTip": MessageLookupByLibrary.simpleMessage(
+            "\"QR code and barcode production\" ,When we provide services to you, we may need to collect and use your account-related information and call account services, store, and read mobile phone status and identity , and a little network information and network service authority, we promise that your personal information will only be used for the purpose we stated. Clicking \"Agree\" means that you agree to the above content."),
         "version": MessageLookupByLibrary.simpleMessage("version"),
         "wfIntroduction": MessageLookupByLibrary.simpleMessage("Introduction")
       };

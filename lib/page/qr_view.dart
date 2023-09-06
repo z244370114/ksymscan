@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ksymscan/common/c_key.dart';
 
 import '../common/application.dart';
 import '../common/constants.dart';
 import '../generated/l10n.dart';
 import '../model/qr_bar_data.dart';
+import '../utils/pub_method.dart';
 import '../widget/clear_button.dart';
+import '../widget/privacy_policy_dialog.dart';
 import '../widget/vcard/v_card.dart';
 import 'qr_create_view.dart';
 
@@ -39,6 +42,16 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
     for (int i = 0; i < 18; i++) {
       editingController.add(TextEditingController());
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Future.delayed(Duration(milliseconds: 500), () {
+        if (!Application.getStorage.hasData(CKey.isShowPrivacy)) {
+          showPrivacyPolicyDialog(context);
+        } else {
+          PubMethodUtils.umengCommonSdkInit();
+        }
+      });
+    });
   }
 
   initTitle() {
@@ -470,5 +483,20 @@ class _QrCodeViewPageState extends State<QrCodeViewPage> {
         onChanged: (v) {},
       ),
     );
+  }
+
+  void showPrivacyPolicyDialog(BuildContext context) async {
+    bool result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const PrivacyPolicyDialog();
+      },
+    );
+    if (result == true) {
+      Application.getStorage.write(CKey.isShowPrivacy, true);
+      var read = Application.getStorage.read(CKey.isShowPrivacy);
+      print(read);
+    }
   }
 }

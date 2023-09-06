@@ -33,4 +33,6 @@ class CKey {
   static const String userGuideState = "userGuideState";
 
   static const String listQrBarData = "listQrBarData";
+
+  static const String isShowPrivacy = "isShowPrivacy";
 }

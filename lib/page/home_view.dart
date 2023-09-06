@@ -5,6 +5,7 @@ import 'package:ksymscan/utils/pub_method.dart';
 
 import '../generated/l10n.dart';
 import '../utils/event_bus.dart';
+import '../widget/privacy_policy_dialog.dart';
 import 'history_view.dart';
 import 'me_view.dart';
 import 'scan_view.dart';
@@ -33,7 +34,6 @@ class _HomeViewPageState extends State<HomeViewPage>
   @override
   void initState() {
     super.initState();
-    PubMethodUtils.umengCommonSdkInit();
   }
 
   initTitle() {
@@ -41,6 +41,8 @@ class _HomeViewPageState extends State<HomeViewPage>
     title.add(S.of(context).barcode);
     title.add(S.of(context).history);
     title.add(S.of(context).me);
+
+
   }
 
   @override
