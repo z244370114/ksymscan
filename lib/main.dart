@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ksymscan/page/home_view.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'common/application.dart';
 import 'common/constants.dart';
 import 'generated/l10n.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
+  Application.initGoogleAdKey();
   Application.initSp('ksymscan').then((value) => {runApp(const MyApp())});
 }
 
@@ -33,9 +37,10 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         themeMode: themeMode,
         theme: ThemeData(
-          colorSchemeSeed: colorSelectionMethod == ColorSelectionMethod.colorSeed
-              ? colorSelected.color
-              : null,
+          colorSchemeSeed:
+              colorSelectionMethod == ColorSelectionMethod.colorSeed
+                  ? colorSelected.color
+                  : null,
           colorScheme: colorSelectionMethod == ColorSelectionMethod.image
               ? imageColorScheme
               : null,
