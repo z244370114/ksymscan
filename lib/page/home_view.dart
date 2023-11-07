@@ -3,6 +3,8 @@ import 'package:ksymscan/page/bar_view.dart';
 import 'package:ksymscan/page/qr_view.dart';
 import 'package:ksymscan/utils/pub_method.dart';
 
+import '../common/application.dart';
+import '../common/c_key.dart';
 import '../generated/l10n.dart';
 import '../utils/event_bus.dart';
 import '../widget/privacy_policy_dialog.dart';
@@ -34,6 +36,12 @@ class _HomeViewPageState extends State<HomeViewPage>
   @override
   void initState() {
     super.initState();
+    if (!Application.getStorage.hasData(CKey.isInAppReviewKey)) {
+      Future.delayed(const Duration(milliseconds: 1000 * 10), () {
+        PubMethodUtils.getInAppReview();
+        Application.getStorage.write(CKey.isInAppReviewKey, false);
+      });
+    }
   }
 
   initTitle() {
@@ -41,8 +49,6 @@ class _HomeViewPageState extends State<HomeViewPage>
     title.add(S.of(context).barcode);
     title.add(S.of(context).history);
     title.add(S.of(context).me);
-
-
   }
 
   @override

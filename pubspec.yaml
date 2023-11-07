@@ -49,6 +49,7 @@ dependencies:
 #  flex_color_scheme: ^7.3.1
   flex_color_picker: ^3.3.0
 #  vcard_maintained: ^0.0.1+1
+  in_app_review: ^2.0.6
 
 dev_dependencies:
   flutter_test:

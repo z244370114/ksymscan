@@ -19,6 +19,7 @@ class CKey {
   static const String proxyIp = "proxyIp";
   static const String sourceUrl = "sourceUrl";
   static const String applicationUrl = "applicationUrl";
+  static const String isInAppReviewKey = "isInAppReviewKey";
 
   ///是否第一次安装启动
   static const String runOne = "runOne";
