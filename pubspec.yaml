@@ -33,7 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   xhxlib:
-    path: D:/project/FlutterProjects/xhxlib
+    path: /Users/zy/AndroidStudioProjects/xhxlib
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,7 +43,7 @@ dependencies:
   image_gallery_saver: ^2.0.3
   path_provider: ^2.1.0
   flutter_colorpicker: ^1.0.3
-  share_plus: ^7.1.0
+  share_plus: ^10.1.4
   qr_code_scanner: ^1.0.0
   font_awesome_flutter: ^10.5.0
 #  flex_color_scheme: ^7.3.1

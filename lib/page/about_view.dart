@@ -44,7 +44,7 @@ class _AboutViewPageState extends State<AboutViewPage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Image(
-                      image: ImgUtil.getAssetImage('ic_launcher-playstore'),
+                      image: ImgUtil.getAssetImage('ic_launcher_playstore'),
                       width: 100,
                       height: 100,
                     ),
